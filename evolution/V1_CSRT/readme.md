@@ -1,168 +1,119 @@
-# CSRT Object Tracker (Manual Target Selection)
+# Version 1 — CSRT Manual Tracking
 
-This module implements a **real-time object tracking system** using a webcam.  
-The user can **manually select any object or person on the live camera feed**, and the system will track that object continuously.
+## Development Phase: Initial Prototype
 
-The tracker is implemented using **OpenCV's CSRT (Discriminative Correlation Filter Tracker)**.
+Version 1 represents the earliest implementation of Project Silent Reaper and serves as the foundation for all subsequent tracking architectures.
 
-This module is part of **Project Silent Reaper** and serves as a **basic vision prototype for drone-based target tracking**.
+This version implements a real-time visual tracking system using OpenCV's CSRT (Discriminative Correlation Filter Tracker). A target is manually selected by the user, after which the tracker continuously estimates and updates the target's position across consecutive video frames.
 
----
-
-# Features
-
-- Real-time webcam processing
-- Manual object selection with mouse
-- Continuous object tracking
-- Visual bounding box around tracked target
-- Live camera feed during selection
+Although simple compared to later versions, V1 established the fundamental concepts of target acquisition, tracking persistence, and visual feedback that would eventually evolve into adaptive memory, re-identification, autonomous re-acquisition, and hybrid recovery architectures.
 
 ---
 
-# Technologies Used
+## Objective
 
-- Python
-- OpenCV
-- CSRT Tracking Algorithm
+The objective of this version was to validate the feasibility of real-time target tracking using classical computer vision techniques before introducing object detection, multi-object tracking, and identity recovery systems.
 
 ---
 
-# System Workflow
+## Demonstration
 
-```
+🎥 **Video Demonstration**
+
+https://github.com/SusmoyNath/Project-Silent-Reaper/blob/main/media/demos/v1_csrt_tracking_demo.mp4
+
+The demonstration shows manual target selection followed by continuous object tracking using the CSRT algorithm.
+
+---
+
+## Features
+
+* Real-time webcam processing
+* Manual target selection
+* CSRT-based object tracking
+* Continuous target tracking
+* Bounding box visualization
+* Lightweight implementation
+* Real-time visual feedback
+
+---
+
+## Technologies Used
+
+* Python
+* OpenCV
+* CSRT (Discriminative Correlation Filter Tracker)
+
+---
+
+## System Workflow
+
+```text
 Camera Feed
-     ↓
-User draws bounding box around target
-     ↓
-CSRT tracker initializes
-     ↓
-Object tracking begins
-     ↓
-Bounding box follows the object
+     │
+     ▼
+Manual Target Selection
+     │
+     ▼
+CSRT Tracker Initialization
+     │
+     ▼
+Real-Time Object Tracking
+     │
+     ▼
+Bounding Box Update
+     │
+     ▼
+Tracking Persistence
 ```
 
 ---
 
-# Installation
+## Limitations
 
-## 1. Clone the Repository
+As an initial prototype, this version has several limitations:
 
-```bash
-git clone https://github.com/Skynet-Biogenics/Project-Silent-Reaper.git
-cd Project-Silent-Reaper
+* Requires manual target selection
+* Supports only a single target
+* No automatic object detection
+* No multi-object tracking
+* No appearance re-identification
+* No adaptive memory system
+* No recovery after complete target loss
+* Sensitive to heavy occlusion and abrupt appearance changes
+
+---
+
+## Significance
+
+Despite its simplicity, V1 established the core tracking pipeline that became the basis for future development.
+
+The limitations encountered in this version directly motivated the introduction of:
+
+* YOLO-based object detection
+* DeepSORT multi-object tracking
+* Appearance-based re-identification
+* Adaptive memory architectures
+* Autonomous target re-acquisition
+* Hybrid recovery mechanisms
+
+---
+
+## Position in Project Evolution
+
+```text
+V1  →  CSRT Manual Tracking
+V2  →  YOLO Detection
+V3  →  DeepSORT Tracking
+V4  →  Re-Identification
+V5  →  Stream Integration
+V6  →  Adaptive Memory
+V7  →  Face-Aware Tracking
+V8  →  Recovery Architecture
+V8.1 → Protected Adaptive Memory
+V9  →  Hybrid Recovery + Temporal Confirmation
 ```
 
 ---
 
-## 2. Create Virtual Environment
-
-```bash
-python3 -m venv env
-```
-
-Activate it:
-
-Mac / Linux
-
-```bash
-source env/bin/activate
-```
-
-Windows
-
-```bash
-env\Scripts\activate
-```
-
----
-
-## 3. Install Dependencies
-
-```bash
-pip install opencv-contrib-python
-```
-
-`opencv-contrib-python` is required because the **CSRT tracker is part of the OpenCV contrib module**.
-
----
-
-# Running the Program
-
-Navigate to the tracker folder:
-
-```bash
-cd Tracker/CSRT\ (Discriminative\ Correlation\ Filter\ Tracker)
-```
-
-Run the tracker:
-
-```bash
-python tracker.py
-```
-
----
-
-# How to Use
-
-1. Run the program.
-2. A **live webcam feed** will appear.
-3. Click and drag the mouse to **draw a bounding box around the object/person you want to track**.
-4. Release the mouse.
-5. The system will **lock onto the selected object and begin tracking it**.
-
-Controls:
-
-| Action | Key |
-|------|------|
-Exit program | ESC |
-Select object | Mouse drag |
-
----
-
-# Example Behavior
-
-- Draw a box around a person.
-- The system initializes the CSRT tracker.
-- A **red bounding box appears and follows the target** as it moves.
-
----
-
-# Known Limitations
-
-The CSRT tracker may lose the target if:
-
-- The object moves very fast
-- The object leaves the camera frame
-- The object becomes fully occluded
-- Lighting changes drastically
-
----
-
-# Possible Improvements
-
-Future upgrades may include:
-
-- AI-based object detection (YOLO)
-- Multi-object tracking
-- Target re-identification
-- Motion prediction using Kalman filters
-- Integration with drone flight control
-
----
-
-# Project Context
-
-This tracker serves as the **foundation of the visual tracking system** used in **Project Silent Reaper**.
-
-Future modules will integrate this tracking system with:
-
-- drone navigation
-- autonomous following
-- AI-assisted target detection
-
----
-
-# Author
-
-Project Silent Reaper  
-Skynet Biogenics
+This version marks the starting point of Project Silent Reaper's evolution from a simple visual tracker into a research-driven computer vision architecture focused on long-term target persistence and intelligent recovery.
